@@ -8,9 +8,9 @@ public class Calculator implements ActionListener {
     JFrame frame;
     JTextField textField;
     JButton[] numberButtons = new JButton[10];
-    JButton[] functionButtons = new JButton[8];
+    JButton[] functionButtons = new JButton[9];
     JButton addButton, subButton, mulButton, divButton;
-    JButton decButton, equButton, delButton, clrButton;
+    JButton decButton, equButton, delButton, clrButton, negButton;
     JPanel panel;
 
     Font myFont = new Font("Ink Free", Font.BOLD, 30);
@@ -36,6 +36,7 @@ public class Calculator implements ActionListener {
         equButton = new JButton("=");
         delButton = new JButton("Delete");
         clrButton = new JButton("Clear");
+        negButton = new JButton("(-)");
 
         functionButtons[0] = addButton;
         functionButtons[1] = subButton;
@@ -45,8 +46,9 @@ public class Calculator implements ActionListener {
         functionButtons[5] = equButton;
         functionButtons[6] = delButton;
         functionButtons[7] = clrButton;
+        functionButtons[8] = negButton;
 
-        for (int i = 0; i < 8; i++) {
+        for (int i = 0; i < 9; i++) {
             functionButtons[i].addActionListener(this);
             functionButtons[i].setFont(myFont);
             functionButtons[i].setFocusable(false);
@@ -59,8 +61,9 @@ public class Calculator implements ActionListener {
             numberButtons[i].setFocusable(false);
         }
 
-        delButton.setBounds(50, 430, 145, 50);
-        clrButton.setBounds(205, 430, 145, 50);
+        negButton.setBounds(50, 430, 100, 50);
+        delButton.setBounds(150, 430, 100, 50);
+        clrButton.setBounds(250, 430, 100, 50);
 
         panel = new JPanel();
         panel.setBounds(50, 100, 300, 300);
@@ -86,6 +89,7 @@ public class Calculator implements ActionListener {
         panel.add(divButton);
 
         frame.add(panel);
+        frame.add(negButton);
         frame.add(delButton);
         frame.add(clrButton);
         frame.add(textField);
@@ -152,6 +156,12 @@ public class Calculator implements ActionListener {
             for (int i = 0; i < string.length()-1; i++) {
                 textField.setText(textField.getText()+string.charAt(i));
             }
+        }
+
+        if (e.getSource() == negButton) {
+            double temp = Double.parseDouble(textField.getText());
+            temp *= -1;
+            textField.setText(String.valueOf(temp));
         }
     }
 
