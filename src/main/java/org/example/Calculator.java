@@ -18,15 +18,19 @@ public class Calculator implements ActionListener {
     char operator;
 
     Calculator() {
+        frame = new JFrame("Calculator");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setSize(420, 550);
+        frame.setLayout(null);
 
+        frame.setVisible(true);
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        Calculator calc = new Calculator();
     }
 
     public static void main(String[] args) {
-        System.out.println("Hello world!");
+        Calculator calc = new Calculator();
     }
 }
